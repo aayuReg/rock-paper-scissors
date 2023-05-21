@@ -13,12 +13,21 @@ let getComputerChoice = () => {
 };
 
 let getPlayerChoice = () => {
-  let playerChoice = prompt("Enter your choice between rock, paper and scissors: ");
+  let playerChoice = prompt(
+    "Enter your choice between rock, paper and scissors: "
+  );
   playerChoice = playerChoice.toLowerCase();
-  if(playerChoice!== 'rock' && playerChoice!== 'paper' && playerChoice!== 'scissors'){
-    prompt('Please enter a valid choice:')
+  console.log(`Player chose ${playerChoice  }`);
+  if (
+    playerChoice == "rock" ||
+    playerChoice == "paper" ||
+    playerChoice == "scissors"
+  ) {
+    return playerChoice;
+  } else {
+    prompt("Please enter a valid choice:");
+    getPlayerChoice();
   }
-  return playerChoice;
 };
 
 let singleRound = (playerSelection, computerSelection) => {
