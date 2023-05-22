@@ -1,91 +1,99 @@
 let getComputerChoice = () => {
   let rand = Math.floor(Math.random() * 3);
   if (rand === 0) {
-    console.log("computer choice is rock");
+    para1.innerText = "computer choice is rock\n";
     return "rock";
   } else if (rand === 1) {
-    console.log("computer choice is paper");
+    para1.innerText = "computer choice is paper\n";
     return "paper";
   } else {
-    console.log("computer choice is scissors");
+    para1.innerText = "computer choice is scissors\n";
     return "scissors";
   }
 };
 
-let getPlayerChoice = () => {
-  let playerChoice = prompt(
-    "Enter your choice between rock, paper and scissors: "
-  );
+let getPlayerChoice = (playerChoice) => {
   playerChoice = playerChoice.toLowerCase();
-  console.log(`Player chose ${playerChoice  }`);
+  para2.innerText = `Player chose ${playerChoice}\n`;
   if (
     playerChoice == "rock" ||
     playerChoice == "paper" ||
     playerChoice == "scissors"
   ) {
     return playerChoice;
-  } else {
-    prompt("Please enter a valid choice:");
-    getPlayerChoice();
   }
 };
 
 let singleRound = (playerSelection, computerSelection) => {
   if (playerSelection === computerSelection) {
-    console.log("it is a draw");
+    para3.innerText = "it is a draw";
     return "tie";
   } else if (playerSelection == "rock") {
     if (computerSelection == "paper") {
-      console.log("computer won");
+      para3.innerText = "computer won";
       return "comp";
     } else {
-      console.log("player won");
+      para3.innerText = "player won";
       return "player";
     }
   } else if (playerSelection == "paper") {
     if (computerSelection == "scissors") {
-      console.log("computer won");
+      para3.innerText = "computer won";
       return "comp";
     } else {
-      console.log("player won");
+      para3.innerText = "player won";
       return "player";
     }
   } else if (playerSelection == "scissors") {
     if (computerSelection == "rock") {
-      console.log("computer won");
+      para3.innerText = "computer won";
       return "comp";
     } else {
-      console.log("player won");
+      para3.innerText = "player won";
       return "player";
     }
   }
 };
 
-function game() {
-  let playerScore = 0;
-  let compScore = 0;
-  for (i = 0; i < 5; i++) {
-    let player = getPlayerChoice();
-    let computer = getComputerChoice();
-    let res = singleRound(player, computer);
-    if (res == "player") {
-      playerScore++;
-    } else if (res == "comp") {
-      compScore++;
-    }
+let calculateScore = (res) => {
+  if (playerScore === 5) {
+    para4.innerText = "The player is the ultimate winner";
+    return "player wins";
+  } else if (compScore === 5) {
+    para4.innerText = "The computer is the ultimate winner";
+    return "comp wins";
   }
 
-  if (playerScore > compScore) {
-    console.log(
-      `The score is ${playerScore}-${compScore} for the favour of  player so player is the ultimate winner`
-    );
-  } else if (compScore > playerScore) {
-    console.log(
-      `The score is ${compScore}-${playerScore} for the favour of  computer so computer is the ultimate winner`
-    );
-  } else {
-    console.log("It is an ultimate draw");
+  if (res === "player") {
+    playerScore++;
+    para4.innerText = `player score: ${playerScore}`;
+  } else if (res === "comp") {
+    compScore++;
+    para4.innerText = `comp score: ${compScore}`;
   }
-}
+};
 
-game();
+let playerScore = 0;
+let compScore = 0;
+const btns = document.querySelectorAll("button");
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const player = e.target.innerText;
+    let playerChoice = getPlayerChoice(player);
+    let compChoice = getComputerChoice();
+    let res = singleRound(playerChoice, compChoice);
+    calculateScore(res);
+  });
+});
+
+const container = document.querySelector(".container");
+const div = document.createElement("div");
+const para1 = document.createElement("p");
+const para2 = document.createElement("p");
+const para3 = document.createElement("p");
+const para4 = document.createElement("p");
+div.appendChild(para1);
+div.appendChild(para2);
+div.appendChild(para3);
+div.appendChild(para4);
+container.appendChild(div);
