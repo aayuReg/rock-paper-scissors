@@ -5,15 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style/style.css" />
     <script src="index.js" defer></script>
   </head>
   <body>
-    <div class="container">
-
-        <button class="btn-rock">Rock</button>
-        <button class="btn-paper">Paper</button>
-        <button class="btn-scissors">Scissors</button>
-        
+    <div class="main">
+      <h1>Rock Paper Scissors</h1>
+      <div class="btn-container">
+        <button class="btn-rock">
+          <img src="images/fist.png" alt="rock" />
+        </button>
+        <button class="btn-paper">
+          <img src="images/palm.png" alt="paper" />
+        </button>
+        <button class="btn-scissors">
+          <img src="images/scissor.png" alt="scissors" />
+        </button>
+      </div>
+      <div class="content-output">
+        <div class="text-output">
+          <div>
+            <h3>You chose:</h3>
+            <p class="para-1"></p>
+          </div>
+          <div>
+            <h3>Computer chose:</h3>
+            <p class="para-2"></p>
+          </div>
+        </div>
+        <div>
+          <h3>Outcome:</h3>
+          <p class="para-3"></p>
+        </div>
+        <h2>Score</h2>
+        <div class="score-output">
+          <div class="player-score"></div>
+          <div class="computer-score"></div>
+        </div>
+        <div class="result">
+          <p class="para-4"></p>
+        </div>
+      </div>
     </div>
   </body>
 </html>
